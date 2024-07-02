@@ -17,9 +17,9 @@
         {% endwith %}
 
         <form action="/upload" method="POST" enctype="multipart/form-data">
-            <label for="upload-file">Upload Your PDF:</label>
+            <label for="upload-file">Upload Your PDF  🗃️</label>
             <input type="file" name="pdf_file" placeholder="only .pdf is allowed" accept="application/pdf">
-            <label for="voice-name">Select a voice</label>
+            <label for="voice-name">Select a voice <span style="color: red;">♫</span></label>
             <select name="my_voice" id="ai_voice">
                 <option selected="Select"></option>
                 {% for voice in voices %}
