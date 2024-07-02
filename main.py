@@ -7,11 +7,16 @@ from flask import Flask, request, url_for, render_template, redirect, flash
 import PyPDF2
 
 app = Flask(__name__)
+app.secret_key = os.getenv('MY_SECRET_KEY')
 
 # Create a client using the credentials and region defined in the [adminuser]
 # section of the AWS credentials file (~/.aws/credentials).
-session = Session(profile_name="default")
+aws_access_key_id = os.getenv('AWS_ACCESS_KEY')
+aws_secret_access_key = os.getenv('AWS_SECRET_ACCESS_KEY')
+session = Session(aws_access_key_id=aws_access_key_id,
+                  aws_secret_access_key=aws_secret_access_key,)
 polly = session.client("polly")
+
 
 @app.route("/", methods=["GET", "POST"])
 def home():
