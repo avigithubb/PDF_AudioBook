@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div id="player" class="container-fluid">
+        {% with messages = get_flashed_messages() %}
+            {% if messages: %}
+              {% for message in messages: %}
+                <p class="flash">{{ message }}</p>
+              {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <label for="upload-file">Upload Your PDF:</label>
+            <input type="file" name="pdf_file" placeholder="only .pdf is allowed" accept="application/pdf">
+            <label for="voice-name">Select a voice</label>
+            <select name="my_voice" id="ai_voice">
+                <option selected="Select"></option>
+                {% for voice in voices %}
+                    <option value="{{ voice }}">{{ voice }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="upload">
+        </form>
+    </div>
+
+
+</body>
+</html>

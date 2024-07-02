@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Audio_play</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div id="player" class="container-fluid">
+      <div class="main">
+        <p id="logo"><i class="fa fa-music"></i>PDF_Player</p>
+        <div class="left">
+          <img id="track_image"/>
+        </div>
+        <div class="right">
+          <p id="title">title.mp3</p>
+          <p id="artist">Artist name</p>
+          <div class="middle">
+            <button onclick="justplay()" id="play">
+              <i class="fa fa-play" aria-hidden="true"></i>
+            </button>
+
+          </div>
+          <div id="name-container" data-name="{{ filename }}"></div>
+          <div id="audio-container" data-audio-file="{{ audio_file }}"></div>
+          <div class="duration">
+            <p id="show_duration">0:00</p>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value="0"
+              id="duration_slider"
+              onchange="change_duration()"
+            />
+          </div>
+          <div class="volume">
+            <p id="volume_show">90</p>
+            <i class="fa fa-volume-up" aria-hidden="true" onclick="mute_sound()" id="volume_icon"></i>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value="90"
+              onchange="volume_change()"
+              id="volume"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
